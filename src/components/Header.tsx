@@ -14,7 +14,7 @@ export default function Header({ children, className }: HeaderProps) {
           className="hidden md:block"
         />
         <Image
-          src="/assests/icons/logo-icon.svg"
+          src="/assets/icons/logo-icon.svg"
           alt="logo"
           width={32}
           height={32}
