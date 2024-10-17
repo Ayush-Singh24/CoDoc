@@ -7,3 +7,8 @@ declare type CreateDocumentParams = {
   userId: string;
   email: string;
 };
+
+declare type AddDocumentBtnProps = {
+  userId: string;
+  email: string;
+};
