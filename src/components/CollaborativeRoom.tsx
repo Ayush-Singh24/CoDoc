@@ -10,7 +10,7 @@ import { KeyboardEvent, useEffect, useRef, useState } from "react";
 import { Input } from "./ui/input";
 import Image from "next/image";
 import { updateDocument } from "@/lib/actions/room.actions";
-import { currentUser } from "@clerk/nextjs/server";
+import ShareModal from "./ShareModal";
 
 export default function CollaborativeRoom({
   roomId,
@@ -26,8 +26,6 @@ export default function CollaborativeRoom({
 
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-
-  console.log(currentUserType);
 
   const updateTitleHandler = async (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
@@ -114,6 +112,12 @@ export default function CollaborativeRoom({
             </div>
             <div className="flex w-full flex-1 justify-end gap-2 sm:gap-3">
               <ActiveCollaborators />
+              <ShareModal
+                roomId={roomId}
+                collaborators={users}
+                creatorId={roomMetadata.creatorId as string}
+                currentUserType={currentUserType}
+              />
               <SignedOut>
                 <SignInButton />
               </SignedOut>

@@ -45,3 +45,35 @@ declare type User = {
   color: string;
   userType?: UserType;
 };
+
+declare type ShareModalProps = {
+  roomId: string;
+  collaborators: User[];
+  creatorId: string;
+  currentUserType: UserType;
+};
+
+declare type UserTypeSelectorProps = {
+  userType: UserType;
+  setUserType: React.Dispatch<React.SetStateAction<UserType>>;
+  onClickHandler?: (value: string) => void;
+};
+
+declare type CollaboratorProps = {
+  roomId: string;
+  email: string;
+  creatorId: string;
+  collaborator: User;
+  user: User;
+};
+
+declare type ShareDocumentParams = {
+  roomId: string;
+  email: string;
+  userType: UserType;
+  updatedBy: User;
+};
+
+declare type DeleteModalProps = {
+  roomId: string;
+};
