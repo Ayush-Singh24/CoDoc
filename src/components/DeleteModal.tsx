@@ -18,8 +18,8 @@ import {
 
 import { Button } from "./ui/button";
 
-export default function DeleteModal({roomId} : DeleteModalProps){
-const [open, setOpen] = useState(false);
+export default function DeleteModal({ roomId }: DeleteModalProps) {
+  const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const deleteDocumentHandler = async () => {
@@ -79,4 +79,5 @@ const [open, setOpen] = useState(false);
         </DialogFooter>
       </DialogContent>
     </Dialog>
+  );
 }

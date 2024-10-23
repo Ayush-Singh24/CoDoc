@@ -25,7 +25,7 @@ export default function ShareModal({
 }: ShareModalProps) {
   const user = useSelf();
 
-  const [isOpen, setIsOpen] = useState<boolean>(true);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [email, setEmail] = useState<string>("");
   const [userType, setUserType] = useState<UserType>("viewer");
