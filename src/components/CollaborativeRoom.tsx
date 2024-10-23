@@ -10,20 +10,24 @@ import { KeyboardEvent, useEffect, useRef, useState } from "react";
 import { Input } from "./ui/input";
 import Image from "next/image";
 import { updateDocument } from "@/lib/actions/room.actions";
+import { currentUser } from "@clerk/nextjs/server";
 
 export default function CollaborativeRoom({
   roomId,
   roomMetadata,
+  users,
+  currentUserType,
 }: CollaborativeRoomProps) {
   const [documentTitle, setDocumentTitle] = useState<string>(
     roomMetadata.title,
   );
-  const currentUser = "editor";
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  console.log(currentUserType);
 
   const updateTitleHandler = async (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
@@ -91,18 +95,18 @@ export default function CollaborativeRoom({
                   <p className="document-title">{documentTitle}</p>
                 </>
               )}
-              {currentUser === "editor" && !isEditing && (
+              {currentUserType === "editor" && !isEditing && (
                 <Image
                   src="/assets/icons/edit.svg"
                   alt="edit"
                   width={24}
                   height={24}
-                  className="pointer"
+                  className="cursor-pointer"
                   onClick={() => setIsEditing(true)}
                 />
               )}
 
-              {currentUser !== "editor" && !isEditing && (
+              {currentUserType !== "editor" && !isEditing && (
                 <p className="view-only-tag">View only</p>
               )}
 
@@ -118,7 +122,7 @@ export default function CollaborativeRoom({
               </SignedIn>
             </div>
           </Header>
-          <Editor />
+          <Editor roomId={roomId} currentUserType={currentUserType} />
         </div>
       </ClientSideSuspense>
     </RoomProvider>
